@@ -1,0 +1,5 @@
+expression DataFolder = "\\Mac\Home\Desktop\Data\projets\1_sport\06_paris-france-ontario" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 0326e422-e4c0-4725-9e80-c11119dec72e
+
+	annotation PBI_ResultType = Text
+

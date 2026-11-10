@@ -1,0 +1,75 @@
+{
+  "name": "Parier en France, parier en Ontario",
+  "dataColors": [
+    "#0f4c5c",
+    "#e4572e",
+    "#e9b44c",
+    "#5b6770",
+    "#8fb3bd",
+    "#c9a0a0"
+  ],
+  "background": "#f4f1ea",
+  "foreground": "#1d2a30",
+  "tableAccent": "#0f4c5c",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1d2a30"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#1d2a30"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#1d2a30"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1d2a30"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#f4f1ea"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#1d2a30"
+              }
+            },
+            "fontSize": 12,
+            "alignment": "left"
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 436,
+    "y": 112,
+    "z": 700,
+    "width": 812,
+    "height": 280,
+    "tabOrder": 700
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_ontario"
+                    }
+                  },
+                  "Property": "mois"
+                }
+              },
+              "queryRef": "suivi_ontario.mois",
+              "nativeQueryRef": "Mois",
+              "displayName": "Mois",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_ontario"
+                    }
+                  },
+                  "Property": "Marge du mois"
+                }
+              },
+              "queryRef": "suivi_ontario.Marge du mois",
+              "nativeQueryRef": "Marge du mois"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_ontario"
+                    }
+                  },
+                  "Property": "Limite basse"
+                }
+              },
+              "queryRef": "suivi_ontario.Limite basse",
+              "nativeQueryRef": "Limite basse"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_ontario"
+                    }
+                  },
+                  "Property": "Limite haute"
+                }
+              },
+              "queryRef": "suivi_ontario.Limite haute",
+              "nativeQueryRef": "Limite haute"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f4c5c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "suivi_ontario.Marge du mois"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9fb7bd'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "suivi_ontario.Limite basse"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9fb7bd'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "suivi_ontario.Limite haute"
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ontario, paris : marge du mois et plage habituelle (moyenne ± 2 écarts-types des 12 mois précédents)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v0735a4659b5a"
+}

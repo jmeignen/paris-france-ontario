@@ -1,0 +1,19 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: fr-FR
+
+	annotation PBI_QueryOrder = ["DataFolder", "ontario_produits", "france_paris", "departements", "interdits", "interdits_dep", "top100", "suivi_indicateurs", "suivi_ontario", "evenements"]
+
+	annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table ontario_produits
+ref table france_paris
+ref table departements
+ref table interdits
+ref table interdits_dep
+ref table top100
+ref table suivi_indicateurs
+ref table suivi_ontario
+ref table evenements

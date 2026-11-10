@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 32,
+    "y": 424,
+    "z": 600,
+    "width": 600,
+    "height": 256,
+    "tabOrder": 600
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "interdits"
+                    }
+                  },
+                  "Property": "annee"
+                }
+              },
+              "queryRef": "interdits.annee",
+              "nativeQueryRef": "Année",
+              "displayName": "Année",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "interdits"
+                    }
+                  },
+                  "Property": "Nouvelles inscriptions"
+                }
+              },
+              "queryRef": "interdits.Nouvelles inscriptions",
+              "nativeQueryRef": "Nouvelles inscriptions"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#5b6770'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#5b6770'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "interdits.Nouvelles inscriptions"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Nouvelles inscriptions dans l''année'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v06f5f50cbf37"
+}

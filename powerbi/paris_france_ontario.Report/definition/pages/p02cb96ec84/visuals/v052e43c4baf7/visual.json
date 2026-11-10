@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 32,
+    "y": 112,
+    "z": 500,
+    "width": 760,
+    "height": 568,
+    "tabOrder": 500
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "departements"
+                    }
+                  },
+                  "Property": "departement"
+                }
+              },
+              "queryRef": "departements.departement",
+              "nativeQueryRef": "Département",
+              "displayName": "Département",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "departements"
+                    }
+                  },
+                  "Property": "Hommes 20-34 ans"
+                }
+              },
+              "queryRef": "departements.Hommes 20-34 ans",
+              "nativeQueryRef": "Hommes 20-34 ans"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "departements"
+                    }
+                  },
+                  "Property": "Densité de parieurs"
+                }
+              },
+              "queryRef": "departements.Densité de parieurs",
+              "nativeQueryRef": "Densité de parieurs"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hommes de 20 à 34 ans (part des 20 ans et plus) et part d''adultes ayant parié en 2024'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f05146b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "departements"
+              }
+            },
+            "Property": "Métropole"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "departements",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "s"
+                          }
+                        },
+                        "Property": "Métropole"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Métropole'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "name": "v052e43c4baf7"
+}

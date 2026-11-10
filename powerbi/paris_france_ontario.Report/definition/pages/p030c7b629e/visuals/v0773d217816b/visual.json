@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 652,
+    "y": 112,
+    "z": 700,
+    "width": 596,
+    "height": 440,
+    "tabOrder": 700
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "interdits_dep"
+                    }
+                  },
+                  "Property": "dep"
+                }
+              },
+              "queryRef": "interdits_dep.dep",
+              "nativeQueryRef": "Département",
+              "displayName": "Département",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "interdits_dep"
+                    }
+                  },
+                  "Property": "Densité de parieurs (dép.)"
+                }
+              },
+              "queryRef": "interdits_dep.Densité de parieurs (dép.)",
+              "nativeQueryRef": "Densité de parieurs (dép.)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "interdits_dep"
+                    }
+                  },
+                  "Property": "Interdits pour 100 000"
+                }
+              },
+              "queryRef": "interdits_dep.Interdits pour 100 000",
+              "nativeQueryRef": "Interdits pour 100 000"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Interdits pour 100 000 adultes, par département (2024)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v0773d217816b"
+}

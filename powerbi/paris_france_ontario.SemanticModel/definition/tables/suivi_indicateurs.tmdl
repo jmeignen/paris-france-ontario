@@ -1,0 +1,99 @@
+table suivi_indicateurs
+	lineageTag: f688dbaa-1afe-4388-835f-3253087beaaf
+
+	measure Indicateurs = COUNTROWS(suivi_indicateurs)
+		formatString: 0
+		lineageTag: 27ad6001-c62f-474e-ac89-f9679b0ef2be
+
+	measure 'Anomalies de données' = CALCULATE(COUNTROWS(suivi_indicateurs), suivi_indicateurs[statut] = "Anomalie de données")
+		formatString: 0
+		lineageTag: 282a2107-2250-4291-b692-e124b11f07b9
+
+	column indicateur
+		dataType: string
+		sourceColumn: indicateur
+		lineageTag: 203f4ee7-f02b-4e7f-9f93-997663b30b4c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column marche
+		dataType: string
+		sourceColumn: marche
+		lineageTag: 62bdd15f-408b-4592-8832-63972138981e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column periode
+		dataType: string
+		sourceColumn: periode
+		lineageTag: 54b33b5e-bf82-4987-907e-76fdb06484a6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column valeur
+		dataType: double
+		formatString: #,0.###
+		sourceColumn: valeur
+		lineageTag: 6ce8e3d5-c72b-4b83-8c1c-6d14142b91bf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column seuil
+		dataType: double
+		formatString: 0.##
+		sourceColumn: seuil
+		lineageTag: 52e1eb19-aa3e-4d02-8d45-4c11500536bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column regle
+		dataType: string
+		sourceColumn: regle
+		lineageTag: 31019bec-f718-4def-a0ec-02b4c71da93b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		sourceColumn: source
+		lineageTag: a975ca77-8bed-4ab4-a20a-06d3f265634f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column statut
+		dataType: string
+		sourceColumn: statut
+		lineageTag: 374dcae9-1ccf-4871-81a3-4c9f0cb9340b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column commentaire
+		dataType: string
+		sourceColumn: commentaire
+		lineageTag: 0783d56d-92a9-43f7-bc75-6929fba30c64
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition suivi_indicateurs = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\donnees\exports\suivi_indicateurs.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Kept = Table.SelectColumns(Promoted, {"indicateur", "marche", "periode", "valeur", "seuil", "regle", "source", "statut", "commentaire"}),
+				    Renamed = Kept,
+				    Typed = Table.TransformColumnTypes(Renamed, {{"indicateur", type text}, {"marche", type text}, {"periode", type text}, {"valeur", type number}, {"seuil", type number}, {"regle", type text}, {"source", type text}, {"statut", type text}, {"commentaire", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

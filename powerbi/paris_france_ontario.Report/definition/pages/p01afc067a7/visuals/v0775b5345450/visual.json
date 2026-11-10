@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 612,
+    "y": 112,
+    "z": 700,
+    "width": 636,
+    "height": 314,
+    "tabOrder": 700
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ontario_produits"
+                    }
+                  },
+                  "Property": "mois"
+                }
+              },
+              "queryRef": "ontario_produits.mois",
+              "nativeQueryRef": "Mois",
+              "displayName": "Mois",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ontario_produits"
+                    }
+                  },
+                  "Property": "Revenu (M$ CA)"
+                }
+              },
+              "queryRef": "ontario_produits.Revenu (M$ CA)",
+              "nativeQueryRef": "Revenu (M$ CA)"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ontario_produits"
+                    }
+                  },
+                  "Property": "produit"
+                }
+              },
+              "queryRef": "ontario_produits.produit",
+              "nativeQueryRef": "Produit",
+              "displayName": "Produit"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ontario : revenu mensuel (M$ CA)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v0775b5345450"
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 32,
+    "y": 220,
+    "z": 800,
+    "width": 392,
+    "height": 172,
+    "tabOrder": 800
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "evenements"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "evenements.date",
+              "nativeQueryRef": "Date",
+              "displayName": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "evenements"
+                    }
+                  },
+                  "Property": "marche"
+                }
+              },
+              "queryRef": "evenements.marche",
+              "nativeQueryRef": "Marché",
+              "displayName": "Marché"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "evenements"
+                    }
+                  },
+                  "Property": "evenement"
+                }
+              },
+              "queryRef": "evenements.evenement",
+              "nativeQueryRef": "Changement de règle",
+              "displayName": "Changement de règle"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "evenements"
+                  }
+                },
+                "Property": "date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Changements de règles'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v082b6ded43c4"
+}

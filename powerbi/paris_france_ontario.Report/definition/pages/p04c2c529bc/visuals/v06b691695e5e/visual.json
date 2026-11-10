@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 652,
+    "y": 112,
+    "z": 600,
+    "width": 596,
+    "height": 568,
+    "tabOrder": 600
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "top100"
+                    }
+                  },
+                  "Property": "match"
+                }
+              },
+              "queryRef": "top100.match",
+              "nativeQueryRef": "Rencontre",
+              "displayName": "Rencontre"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "top100"
+                    }
+                  },
+                  "Property": "competition"
+                }
+              },
+              "queryRef": "top100.competition",
+              "nativeQueryRef": "Compétition",
+              "displayName": "Compétition"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "top100"
+                    }
+                  },
+                  "Property": "Mises (M€)"
+                }
+              },
+              "queryRef": "top100.Mises (M€)",
+              "nativeQueryRef": "Mises (M€)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "top100"
+                    }
+                  },
+                  "Property": "Part en direct"
+                }
+              },
+              "queryRef": "top100.Part en direct",
+              "nativeQueryRef": "Part en direct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "top100"
+                  }
+                },
+                "Property": "Mises (M€)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Les rencontres'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v06b691695e5e"
+}

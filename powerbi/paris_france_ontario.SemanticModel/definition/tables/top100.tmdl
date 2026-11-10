@@ -1,0 +1,104 @@
+table top100
+	lineageTag: 85e12766-ad08-449d-9b20-c50ea4580e75
+
+	measure 'Mises (M€)' = SUM(top100[mises]) / 1000000
+		formatString: #,0.0
+		lineageTag: 2b882d43-33f3-4d56-95b8-cd31d3765981
+
+	measure 'Part en direct' = DIVIDE(SUM(top100[mises_live]), SUM(top100[mises]))
+		formatString: 0%
+		lineageTag: 5f07c449-f6ab-4687-8fa3-bfb30c1072e1
+
+	measure Rencontres = COUNTROWS(top100)
+		formatString: 0
+		lineageTag: 94ad854a-485f-4711-b788-62f460547f39
+
+	column sport
+		dataType: string
+		sourceColumn: sport
+		lineageTag: f4056f04-e39a-4e8c-9d0f-77e9aab7e3e9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column match
+		dataType: string
+		sourceColumn: match
+		lineageTag: d294a8c9-7a19-404e-8fdd-97cddaddd67e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition
+		dataType: string
+		sourceColumn: competition
+		lineageTag: 8dd7a7d6-9987-42ac-bf2d-0849c804fbc9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		sourceColumn: date
+		lineageTag: f437bd5f-0fb6-41d6-839d-a83f13e189d3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mises
+		dataType: double
+		formatString: #,0
+		sourceColumn: mises
+		lineageTag: 94add6f7-a4f0-4085-ac3f-59647fa638b8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mises_live
+		dataType: double
+		formatString: #,0
+		sourceColumn: mises_live
+		lineageTag: 6a995c7e-c096-421f-91a5-857c6d14c6a9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_comptes
+		dataType: int64
+		formatString: #,0
+		sourceColumn: nb_comptes
+		lineageTag: e517d0a3-edc2-4eb0-bbca-804bc4a2b5d7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column equipe_de_france
+		dataType: boolean
+		sourceColumn: equipe_de_france
+		lineageTag: c10b4d40-fe89-4978-812d-cddf6230b62c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column psg
+		dataType: boolean
+		sourceColumn: psg
+		lineageTag: a40e2ce8-f9d3-498c-ba90-f2d71df8299a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition top100 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\donnees\exports\top100_rencontres.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Kept = Table.SelectColumns(Promoted, {"sport", "match", "competition", "date", "mises", "mises_live", "nb_comptes", "equipe_de_france", "psg"}),
+				    Renamed = Kept,
+				    Typed = Table.TransformColumnTypes(Renamed, {{"sport", type text}, {"match", type text}, {"competition", type text}, {"date", type datetime}, {"mises", type number}, {"mises_live", type number}, {"nb_comptes", Int64.Type}, {"equipe_de_france", type logical}, {"psg", type logical}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

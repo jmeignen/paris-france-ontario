@@ -1,0 +1,78 @@
+table ontario_produits
+	lineageTag: d9d50fd5-3847-42e0-a784-da0ea6be7e68
+
+	measure 'Mises (M$ CA)' = SUM(ontario_produits[mises_m])
+		formatString: #,0
+		lineageTag: f448ec1d-3407-4d9d-a5ed-16cc599c8d4a
+
+	measure 'Revenu (M$ CA)' = SUM(ontario_produits[revenu_m])
+		formatString: #,0
+		lineageTag: b576541f-45c5-45f5-9b42-06ce0c083d9e
+
+	measure Marge = DIVIDE([Revenu (M$ CA)], [Mises (M$ CA)])
+		formatString: 0.0%
+		lineageTag: 3cbdad22-efa0-4c7c-bc19-2c22968ef061
+
+	measure 'Part des mises' = DIVIDE([Mises (M$ CA)], CALCULATE([Mises (M$ CA)], ALL(ontario_produits[produit])))
+		formatString: 0%
+		lineageTag: 6a2083c3-4e0d-4319-a969-41807cd89d5a
+
+	measure 'Part du revenu' = DIVIDE([Revenu (M$ CA)], CALCULATE([Revenu (M$ CA)], ALL(ontario_produits[produit])))
+		formatString: 0%
+		lineageTag: 1e2e4fb8-588f-4f95-bf05-9334174be2fb
+
+	column mois
+		dataType: dateTime
+		sourceColumn: mois
+		lineageTag: fdafc72f-ba9f-467a-9fde-e9cc09105c93
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column produit
+		dataType: string
+		sourceColumn: produit
+		lineageTag: b49c0936-4a00-45c0-b1a1-7b299623d7d2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mises_m
+		dataType: double
+		formatString: #,0
+		sourceColumn: mises_m
+		lineageTag: c156cf92-4c74-492e-b4ea-0bed0472e884
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenu_m
+		dataType: double
+		formatString: #,0.0
+		sourceColumn: revenu_m
+		lineageTag: f10acac2-f202-45e9-9e31-529416d9899e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Année' = YEAR(ontario_produits[mois])
+		dataType: int64
+		lineageTag: a3555f18-e708-4121-a93d-2715739ae38c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ontario_produits = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\donnees\exports\ontario_mensuel_produits.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Kept = Table.SelectColumns(Promoted, {"mois", "produit", "mises_m", "revenu_m"}),
+				    Renamed = Kept,
+				    Typed = Table.TransformColumnTypes(Renamed, {{"mois", type date}, {"produit", type text}, {"mises_m", type number}, {"revenu_m", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

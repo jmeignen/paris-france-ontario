@@ -1,0 +1,103 @@
+table suivi_ontario
+	lineageTag: 596a918f-a552-48dd-91fb-0c720f858e6b
+
+	measure 'Marge du mois' = SUM(suivi_ontario[marge])
+		formatString: 0.0%
+		lineageTag: fdfd79ba-a565-43dc-894a-c4b5646ed61a
+
+	measure 'Limite basse' = SUM(suivi_ontario[limite_basse])
+		formatString: 0.0%
+		lineageTag: 021ad27f-2462-4c77-bb9b-37e7a8e7467a
+
+	measure 'Limite haute' = SUM(suivi_ontario[limite_haute])
+		formatString: 0.0%
+		lineageTag: 451efd9f-42e7-4e2e-94cb-7de6e639c934
+
+	measure 'Mois à expliquer' = CALCULATE(COUNTROWS(suivi_ontario), suivi_ontario[statut] = "Écart à expliquer")
+		formatString: 0
+		lineageTag: 59cc7ce5-9c1c-411f-9d7e-29c659610c2a
+
+	column mois
+		dataType: dateTime
+		sourceColumn: mois
+		lineageTag: c95ec10a-56f6-40b2-a030-1d4306bc38d0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mises_m
+		dataType: double
+		formatString: #,0
+		sourceColumn: mises_m
+		lineageTag: a005c5d0-33ab-4e20-a1b6-5473f7ad0ac7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenu_m
+		dataType: double
+		formatString: #,0.0
+		sourceColumn: revenu_m
+		lineageTag: 64df1ffe-1703-4a24-b54b-c771ab80e727
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column marge
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: marge
+		lineageTag: 045f7715-45b1-4257-802d-70f038988403
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column moyenne_12m
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: moyenne_12m
+		lineageTag: 84b83bf4-9114-4cb0-b902-652c5ca23a07
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column limite_basse
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: limite_basse
+		lineageTag: 6a84a5f0-16dc-401e-9eca-9de11db70ebb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column limite_haute
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: limite_haute
+		lineageTag: 7f8a2fee-5ba2-4aea-89fa-dda20b944585
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column statut
+		dataType: string
+		sourceColumn: statut
+		lineageTag: b9acb15b-db0a-4c9c-b68e-4a64e3b0bbf0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition suivi_ontario = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\donnees\exports\suivi_ontario_paris_mensuel.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Kept = Table.SelectColumns(Promoted, {"mois", "mises_m", "revenu_m", "marge", "moyenne_12m", "limite_basse", "limite_haute", "statut"}),
+				    Renamed = Kept,
+				    Typed = Table.TransformColumnTypes(Renamed, {{"mois", type date}, {"mises_m", type number}, {"revenu_m", type number}, {"marge", type number}, {"moyenne_12m", type number}, {"limite_basse", type number}, {"limite_haute", type number}, {"statut", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

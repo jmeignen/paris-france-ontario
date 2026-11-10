@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "position": {
+    "x": 32,
+    "y": 472,
+    "z": 1000,
+    "width": 1216,
+    "height": 208,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "marche"
+                }
+              },
+              "queryRef": "suivi_indicateurs.marche",
+              "nativeQueryRef": "Marché",
+              "displayName": "Marché"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "periode"
+                }
+              },
+              "queryRef": "suivi_indicateurs.periode",
+              "nativeQueryRef": "Période",
+              "displayName": "Période"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "indicateur"
+                }
+              },
+              "queryRef": "suivi_indicateurs.indicateur",
+              "nativeQueryRef": "Indicateur",
+              "displayName": "Indicateur"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "valeur"
+                }
+              },
+              "queryRef": "suivi_indicateurs.valeur",
+              "nativeQueryRef": "Valeur",
+              "displayName": "Valeur"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "seuil"
+                }
+              },
+              "queryRef": "suivi_indicateurs.seuil",
+              "nativeQueryRef": "Seuil",
+              "displayName": "Seuil"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "statut"
+                }
+              },
+              "queryRef": "suivi_indicateurs.statut",
+              "nativeQueryRef": "Statut",
+              "displayName": "Statut"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "suivi_indicateurs"
+                    }
+                  },
+                  "Property": "commentaire"
+                }
+              },
+              "queryRef": "suivi_indicateurs.commentaire",
+              "nativeQueryRef": "Commentaire",
+              "displayName": "Commentaire"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicateurs suivis'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "name": "v107a12aab606"
+}

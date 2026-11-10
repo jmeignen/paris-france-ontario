@@ -1,0 +1,106 @@
+table departements
+	lineageTag: b573e561-fc5c-466e-b173-50d27de2a8c4
+
+	measure 'Densité de parieurs' = DIVIDE(SUM(departements[parieurs]), SUM(departements[adultes]))
+		formatString: 0.0%
+		lineageTag: 542a605c-4f56-4393-8f35-5b7055e7e4e9
+
+	measure 'Hommes 20-34 ans' = AVERAGE(departements[part_hommes_20_34])
+		formatString: 0.0%
+		lineageTag: 7c193c33-fd93-4825-892d-2415ebbeca81
+
+	measure 'Pauvreté (%)' = AVERAGE(departements[pauvrete])
+		formatString: 0.0
+		lineageTag: fdeebad8-7aa0-4829-b006-f9ba442cc98d
+
+	column dep
+		dataType: string
+		sourceColumn: dep
+		lineageTag: 7a65dcbc-2fc6-479d-9567-7bc2d813cfae
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column departement
+		dataType: string
+		sourceColumn: departement
+		lineageTag: 94f22d70-92d6-4f76-a62b-dad47937ec8a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column parieurs
+		dataType: int64
+		formatString: #,0
+		sourceColumn: parieurs
+		lineageTag: ad48445c-75b1-4155-8de9-789e29e21cdf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column adultes
+		dataType: int64
+		formatString: #,0
+		sourceColumn: adultes
+		lineageTag: 081b6d1e-52b7-4d5d-8a3c-8eb3b643db10
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column niveau_vie
+		dataType: double
+		formatString: #,0
+		sourceColumn: niveau_vie
+		lineageTag: 1edcb71c-5839-46d0-8411-c70295da59f2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column pauvrete
+		dataType: double
+		formatString: 0.0
+		sourceColumn: pauvrete
+		lineageTag: 6118c446-741e-49e0-8eaf-7a572759d1ab
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column part_hommes_20_34
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: part_hommes_20_34
+		lineageTag: 04d8367d-d6b7-4952-9a0d-dd274984678b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column densite_paris
+		dataType: double
+		formatString: 0.0%
+		sourceColumn: densite_paris
+		lineageTag: dd80da76-6983-4ec5-a02f-269bd5a64c28
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Métropole' = IF(LEFT(departements[dep], 2) = "97", "Outre-mer", "Métropole")
+		dataType: string
+		lineageTag: dfeb1def-2f01-4009-90e1-acfd6d103cf6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition departements = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\donnees\exports\france_departements.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Kept = Table.SelectColumns(Promoted, {"dep", "departement", "parieurs", "adultes", "niveau_vie", "pauvrete", "part_hommes_20_34", "densite_paris"}),
+				    Renamed = Kept,
+				    Typed = Table.TransformColumnTypes(Renamed, {{"dep", type text}, {"departement", type text}, {"parieurs", Int64.Type}, {"adultes", Int64.Type}, {"niveau_vie", type number}, {"pauvrete", type number}, {"part_hommes_20_34", type number}, {"densite_paris", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
